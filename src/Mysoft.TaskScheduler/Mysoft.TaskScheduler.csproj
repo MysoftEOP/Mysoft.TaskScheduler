@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>RDC Team</Authors>
+    <Company>Mysoft</Company>
+    <Product>RDC</Product>
+    <Copyright>© 2019 Mysoft. All Right Reserved</Copyright>
+    <PackageLicenseUrl>https://github.com/MysoftEOP/Mysoft.TaskScheduler/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/MysoftEOP/Mysoft.TaskScheduler</PackageProjectUrl>
+    <PackageIconUrl>https://rdc.mingyuanyun.com/favicon.ico</PackageIconUrl>
+    <PackageTags>mysoft hangfire task scheduler job dotnetcore standard redis castle windsor polly</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>An enhanced scheduler based on hangfire</Description>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="3.3.1" />
+    <PackageReference Include="Hangfire.Core" Version="1.6.23" />
+    <PackageReference Include="Hangfire.Redis.StackExchange" Version="1.8.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.0" />
+    <PackageReference Include="Polly" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ApplicationStrings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApplicationStrings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="ApplicationStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApplicationStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

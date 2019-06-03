@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>RDC Team</Authors>
+    <Company>Mysoft</Company>
+    <Product>RDC</Product>
+    <Copyright>© 2019 Mysoft. All Right Reserved</Copyright>
+    <PackageLicenseUrl>https://github.com/MysoftEOP/Mysoft.TaskScheduler/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/MysoftEOP/Mysoft.TaskScheduler</PackageProjectUrl>
+    <PackageIconUrl>https://rdc.mingyuanyun.com/favicon.ico</PackageIconUrl>
+    <PackageTags>mysoft hangfire task scheduler job dotnetcore standard redis castle windsor polly</PackageTags>
+    <Description>An enhanced scheduler based on hangfire</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.6.23" />
+    <PackageReference Include="Hangfire.Core" Version="1.6.23" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mysoft.TaskScheduler\Mysoft.TaskScheduler.csproj" />
+  </ItemGroup>
+
+</Project>
