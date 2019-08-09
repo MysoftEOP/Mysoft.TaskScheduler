@@ -55,5 +55,10 @@ namespace Mysoft.TaskScheduler.Hangfire
         /// 处理器类型
         /// </summary>
         internal Type HandlerType { get; set; }
+
+        /// <summary>
+        /// 异常错误
+        /// </summary>
+        internal Exception Error { get; set; }
     }
 }

@@ -65,10 +65,21 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     return new DefaultJobActivator(x);
                 })
-                //.AddTransient<ITaskBuilder, TaskBuilder>()
                 ;
 
-            services.Add(new ServiceDescriptor(typeof(ITaskBuilder), typeof(TaskBuilder), options.BuilderLifetime));
+            services.Add(new ServiceDescriptor(typeof(ITaskBuilder), x =>
+            {
+                if (options.OnlyClient == false)
+                {
+                    x.GetRequiredService<BackgroundJobServer>();
+                }
+                else
+                {
+                    x.GetRequiredService<IGlobalConfiguration>();
+                }
+                
+                return new TaskBuilder();
+            }, options.BuilderLifetime));
 
             if (options.OnlyClient)
             {

@@ -19,18 +19,19 @@ namespace ConsoleApplication
                 {
                     BuilderLifetime = ServiceLifetime.Singleton,
                     EnableConsoleLog = true,
-                    OnlyClient = true,
-                    RedisConnectionStrings = "localhost:6379,abortConnect=false",
+                    //OnlyClient = true,
+                    RedisConnectionStrings = "localhost:6379,password=howe,abortConnect=false",
                     RedisDbIndex = 0,
                     RedisPrefix = "test",
                     RetryCount = 0,
                     ServerName = "localhost",
-                    WorkerCount = 10
+                    WorkerCount = 10,
                 })
                 .AddTransient<Task1>()
                 .AddTransient<Task2>()
                 .AddTransient<Task3>()
                 .AddTransient<Task3Model>()
+                .AddTransient<CallbackHandler>()
                 .BuildServiceProvider()
                 ;
 
@@ -58,6 +59,8 @@ namespace ConsoleApplication
         public override void Do()
         {
             Console.WriteLine("Task1 Do.");
+
+            throw new Exception("error");
         }
 
         public override void Undo()
@@ -105,9 +108,11 @@ namespace ConsoleApplication
 
     public class CallbackHandler : ITaskHandler<CallbackHandlerModel>
     {
-        public Task DoFailed(CallbackHandlerModel model)
+        public Task DoFailed(CallbackHandlerModel model, Exception ex)
         {
             Console.WriteLine($"DoFailed ### result is {model.Result} ###");
+
+            Console.WriteLine($"DoFailed ### ex is {ex.Message} ###");
             return Task.CompletedTask;
         }
 

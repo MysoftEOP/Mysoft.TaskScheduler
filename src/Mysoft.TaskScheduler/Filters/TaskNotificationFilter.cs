@@ -30,6 +30,9 @@ namespace Mysoft.TaskScheduler.Filters
             {
                 var handlerTypeString = context.GetTaskParameter(Consts.TASK_HANDLER_TYPE);
 
+
+                var ex = context.NewState as FailedState == null ? null : (context.NewState as FailedState).Exception;
+
                 return new TaskStateChangeEventArgs
                 {
                     Id = context.BackgroundJob.Id,
@@ -40,7 +43,8 @@ namespace Mysoft.TaskScheduler.Filters
                     TaskUndoIdChain = context.GetTaskParameter(Consts.TASK_UNDO_CHAIN)?.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList(),
                     ExecutionType = (TaskExecutionTypeEnum)Convert.ToInt32(context.GetTaskParameter(Consts.TASK_EXECUTION_TYPE)),
                     CallbackJson = context.GetTaskParameter(Consts.TASK_CALL_BACK),
-                    HandlerType = string.IsNullOrWhiteSpace(handlerTypeString) ? null : Type.GetType(handlerTypeString)
+                    HandlerType = string.IsNullOrWhiteSpace(handlerTypeString) ? null : Type.GetType(handlerTypeString),
+                    Error = ex
                 };
             });
         }

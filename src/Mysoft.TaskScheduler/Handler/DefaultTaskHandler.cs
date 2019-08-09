@@ -7,9 +7,9 @@ namespace Mysoft.TaskScheduler.Handler
 {
     public class DefaultTaskHandler : ITaskHandler<DefaultCallback>
     {
-        public virtual Task DoFailed(DefaultCallback model)
+        public virtual Task DoFailed(DefaultCallback model, Exception ex)
         {
-            return Task.FromResult<object>(null);
+            throw new NotImplementedException();
         }
 
         public virtual Task DoFinished(DefaultCallback model)

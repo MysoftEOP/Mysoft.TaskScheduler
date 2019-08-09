@@ -133,7 +133,7 @@ namespace Mysoft.TaskScheduler
                         break;
                     case TaskStateEnum.Failed:
                         method = e.HandlerType.GetMethod(nameof(ITaskHandler.DoFailed));
-                        result = (Task)method.Invoke(service, new object[] { Newtonsoft.Json.JsonConvert.DeserializeObject(e.CallbackJson, modelType) });
+                        result = (Task)method.Invoke(service, new object[] { Newtonsoft.Json.JsonConvert.DeserializeObject(e.CallbackJson, modelType), e.Error });
                         await result;
                         break;
                     default:
