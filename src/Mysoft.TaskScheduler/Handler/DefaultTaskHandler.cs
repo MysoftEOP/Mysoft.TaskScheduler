@@ -7,6 +7,12 @@ namespace Mysoft.TaskScheduler.Handler
 {
     public class DefaultTaskHandler : ITaskHandler<DefaultCallback>
     {
+        [Obsolete]
+        public virtual Task DoFailed(DefaultCallback model)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual Task DoFailed(DefaultCallback model, Exception ex)
         {
             throw new NotImplementedException();

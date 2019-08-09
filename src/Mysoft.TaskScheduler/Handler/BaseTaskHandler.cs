@@ -18,6 +18,18 @@ namespace Mysoft.TaskScheduler.Handler
         /// 执行失败
         /// </summary>
         /// <param name="model"></param>
+        /// <returns></returns>
+        [Obsolete]
+        public virtual Task DoFailed(TCallback model)
+        {
+            Logger.Error($"DoFailed --- type is {typeof(TCallback).AssemblyQualifiedName} data is {Newtonsoft.Json.JsonConvert.SerializeObject(model)}");
+            return Task.FromResult<object>(null);
+        }
+
+        /// <summary>
+        /// 执行失败
+        /// </summary>
+        /// <param name="model"></param>
         /// <param name="error"></param>
         /// <returns></returns>
         public virtual Task DoFailed(TCallback model, Exception error)

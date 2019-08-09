@@ -15,6 +15,14 @@ namespace Mysoft.TaskScheduler.Handler
         /// 执行失败
         /// </summary>
         /// <param name="model"></param>
+        /// <returns></returns>
+        [Obsolete]
+        Task DoFailed(TCallback model);
+
+        /// <summary>
+        /// 执行失败
+        /// </summary>
+        /// <param name="model"></param>
         /// <param name="error"></param>
         /// <returns></returns>
         Task DoFailed(TCallback model, Exception error);

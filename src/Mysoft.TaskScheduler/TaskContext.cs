@@ -132,9 +132,26 @@ namespace Mysoft.TaskScheduler
                         }
                         break;
                     case TaskStateEnum.Failed:
-                        method = e.HandlerType.GetMethod(nameof(ITaskHandler.DoFailed));
-                        result = (Task)method.Invoke(service, new object[] { Newtonsoft.Json.JsonConvert.DeserializeObject(e.CallbackJson, modelType), e.Error });
-                        await result;
+
+                        var methods = e.HandlerType.GetMethods();
+
+                        foreach (var m in methods)
+                        {
+                            if (m.Name.Equals(nameof(ITaskHandler.DoFailed)))
+                            {
+                                switch (m.GetParameters().Length)
+                                {
+                                    case 1:
+                                        result = (Task)m.Invoke(service, new object[] { Newtonsoft.Json.JsonConvert.DeserializeObject(e.CallbackJson, modelType) });
+                                        await result;
+                                        break;
+                                    case 2:
+                                        result = (Task)m.Invoke(service, new object[] { Newtonsoft.Json.JsonConvert.DeserializeObject(e.CallbackJson, modelType), e.Error });
+                                        await result;
+                                        break;
+                                }
+                            }
+                        }
                         break;
                     default:
                         return;

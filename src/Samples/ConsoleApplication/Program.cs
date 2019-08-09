@@ -116,6 +116,12 @@ namespace ConsoleApplication
             return Task.CompletedTask;
         }
 
+        public Task DoFailed(CallbackHandlerModel model)
+        {
+            Console.WriteLine($"DoFailed ### result is {model.Result} ###");
+            return Task.CompletedTask;
+        }
+
         public Task DoFinished(CallbackHandlerModel model)
         {
             Console.WriteLine($"DoFinished ### result is {model.Result} ###");
